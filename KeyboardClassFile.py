@@ -8,23 +8,27 @@ class BaseClass:
         self.master.geometry("1800x800") #Set the window size to 800x600
         self.master.config(bg="#666699")
 
-class ButtonClass:
-    def __init__(self, master, text, command, **kwargs):
-        self.button = tkinter.Button(master, text=text, command=command, takefocus=0)
-        self.button.config(height=1,
+class ButtonClass(tkinter.Button):
+    def __init__(self, master, text, **kwargs):
+        super().__init__(master, text=text, bg="#666699")
+        # self.button = tkinter.Button(master, text=text, command=command)
+        self.config(height=1,takefocus=0,
             font=("Arial", 26, "bold"),
-            bg="#666699",
             fg="white")
-        self.button.pack(expand = True, padx=5, pady=5)
+        
+        self.pack(expand = True, padx=5, pady=5)
 
         for key, value in kwargs.items():
-            if key in self.button.config().keys():
-                self.button.config(**{key: value})
-            if key in self.button.pack_info():
-                self.button.pack_configure(**{key: value})
+            if key in self.config().keys():
+                self.config(**{key: value})
+            if key in self.pack_info():
+                self.pack_configure(**{key: value})
         
     def invoke_button(self, event=None):
-        self.button.invoke()
+        self.invoke(event)
+    
+    def __str__(self):
+        return self.cget("text")
 
 class LabelClass:
     def __init__(self, master, text, **kwargs):
@@ -45,3 +49,19 @@ class LabelClass:
                 self.label.config(**{key: value})
             if key in self.label.pack_info():
                 self.label.pack_configure(**{key: value})
+        
+
+
+class FrameClass(tkinter.Frame):
+    #Inherits from the Frame class
+    #Need to do the same to top 3 classes ^^
+    def __init__(self, master, **kwargs):
+        #Turns the actual class into a direct widget, rather than reference
+        super().__init__(master, bg="#1f1f2e")
+        self.pack(fill=BOTH, padx=5, pady=5)
+        #Checks any in-put kwargs and separates them
+        for key, value in kwargs.items():
+            if key in self.config().keys():
+                self.config(**{key: value})
+            if key in self.pack_info():
+                self.pack_configure(**{key: value})
