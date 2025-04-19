@@ -25,7 +25,6 @@ Just to find the key name, couldn't find a list in the docs
 #     print(f'{key}')
 # tk.bind("<Key>", key_press)
 
-
 #Autocomplete - See details in file
 def check_auto_complete() -> None:
     KeyCommands.check_auto_correct(tk)

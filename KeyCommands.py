@@ -174,19 +174,19 @@ def run(tk, box_frame) -> None:
         )
     
     spell_check1 = ButtonClass(
-        master = box_frame, text = "test1",
+        master = box_frame, text = " ",
         width=12,
         command = lambda : auto_correct(str(spell_check1)),
         side=LEFT, bg="#1f1fff", expand=True)
     
     spell_check2 = ButtonClass(
-        master = box_frame, text = "test2",
+        master = box_frame, text = " ",
         width=12,
         command = lambda : auto_correct(str(spell_check2)),
         side=LEFT, bg="#1f1fff", expand=True)
     
     spell_check3 = ButtonClass(
-        master = box_frame, text = "test3",
+        master = box_frame, text = " ",
         width=12,
         command = lambda : auto_correct(str(spell_check3)),
         side=LEFT, bg="#1f1fff", expand=True)
