@@ -7,3 +7,5 @@ Enter + Space both *Submit* the word to the text box
 
 19/04 - Working Spell Check, however slow
 - Will be implementing a few faster algorithms to look-up words more efficiently
+19/04 ++
+  - Implemented faster spellcheck, from 16sec lookup to 2sec lookup (Based on unitesting)
