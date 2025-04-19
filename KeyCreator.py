@@ -4,16 +4,22 @@ from KeyboardClassFile import ButtonClass, FrameClass
 import KeyCommands
 import pyautogui  # type: ignore
 
+'''
+Just felt like splitting my key-creation into a separate file
+made it a little more difficult but easier to handle
+'''
+
+
 
 
 #holds the button nodes, so i can tinker with them later
-button_nodes: list[tkinter.Button] = []
+button_nodes: list[ButtonClass] = []
 #Just to place the QWERTY keys in order
 button_counter: int = 0
 
 
 def create_frame(master: tkinter.Tk) -> list:
-    main_keyboard_frame = FrameClass(master, side=BOTTOM)
+    main_keyboard_frame = FrameClass(master, fill = BOTH, side=BOTTOM, anchor="s", expand=FALSE)
     internal_frame_top = FrameClass(main_keyboard_frame)
     internal_frame_midd = FrameClass(main_keyboard_frame)
     internal_frame_bot = FrameClass(main_keyboard_frame)
@@ -30,9 +36,7 @@ def create_special_buttons(frame_top, frame_mid, frame_bot) -> None:
         master = frame_mid, text = "Caps\nLock",
         command = lambda: pyautogui.press('capslock'),
         side=LEFT,  width=10,  fill= BOTH, wraplength=164)
-    
-    
-
+  
     shift_key = ButtonClass(
         master = frame_bot, text = "Shift", 
         command = lambda: print("Shift key pressed"),
@@ -73,14 +77,8 @@ def create_button(button, location: str, tk, frame) -> None:
                 side=LEFT,padx=5, pady=5, width=5, fill = BOTH)
         case default:
             print("Failed")
-            
-    button_nodes.append(new_button)
     
-#     bind_buttons(tk, new_button)
-
-# def bind_buttons(tk, new_button):
-#     tk.bind("<"+ str(new_button).lower() + ">", lambda event : KeyCommands.button_invoke(str(new_button).lower()))
-#     tk.bind("<"+ str(new_button).upper() + ">", lambda event: KeyCommands.button_invoke(str(new_button).upper()))
+    button_nodes.append(new_button)
 
 def create_bottom_buttons(frame) -> None:
     ctrl_key = ButtonClass(
@@ -143,6 +141,7 @@ def run(master):
     buttons = create_special_buttons(
         frame_top = frames[1],frame_mid= frames[2], frame_bot= frames[3])
     
+
     create_keyboard_keys(master, frame_top = frames[1],
                         frame_mid= frames[2], frame_bot= frames[3])
     create_bottom_buttons(frames[4])

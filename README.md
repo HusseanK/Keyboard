@@ -5,6 +5,5 @@ The keyboard will be designed so that you are able to press the keys, as well as
 Enter + Space both *Submit* the word to the text box
 
 
-Keyboard has been complete on a basic level, however will begin to introduce:
-  - Spell-Check
-  - Predictive text/autocomplete
+19/04 - Working Spell Check, however slow
+- Will be implementing a few faster algorithms to look-up words more efficiently
