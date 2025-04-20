@@ -1,14 +1,24 @@
-import Spellchecker
 import unittest
+
+import spell_check as spell_check
+
 
 all_words = ["bananas", "appls", "var"]
 results = ["banana", "apple", "car"]
 
+large_test = ["bananas", "appls", "var", "vand", "corruopt", "biston", "delver"]
+large_test_results = ["banana", "apple", "car", "hand", "corrupt", "piston", "deliver"]
+
 class TestSpellCheck(unittest.TestCase):
     def test_spell(self):
+
         for i in range(len(all_words)):
-            result = Spellchecker.test_autocorrect_text_improved(all_words[i])
+            result = spell_check.unit_test_auto_correct(all_words[i])
             self.assertIn(results[i], result)
+
+        # for i in range(len(large_test)):
+        #     result = spell_check.unit_test_auto_correct(large_test[i])
+        #     self.assertIn(large_test_results[i], result)
 
 if __name__ == "__main__":
     unittest.main()

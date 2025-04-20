@@ -1,16 +1,16 @@
 import tkinter
 from tkinter.constants import *
-from KeyboardClassFile import ButtonClass, FrameClass
-import KeyCommands
 import pyautogui  # type: ignore
+
+
+from keyboard_creator.keyboard_classes import ButtonClass, FrameClass
+import keyboard_creator.key_commands as key_commands
+
 
 '''
 Just felt like splitting my key-creation into a separate file
 made it a little more difficult but easier to handle
 '''
-
-
-
 
 #holds the button nodes, so i can tinker with them later
 button_nodes: list[ButtonClass] = []
@@ -29,7 +29,7 @@ def create_frame(master: tkinter.Tk) -> list:
 def create_special_buttons(frame_top, frame_mid, frame_bot) -> None:
     tab_key = ButtonClass(
         master = frame_top, text = "Tab",
-        command =  lambda : KeyCommands.button_invoke(key = "\t"),
+        command =  lambda : key_commands.button_invoke(key = "\t"),
         side=LEFT,  width=9,   fill= BOTH)
     
     caps_lock = ButtonClass(
@@ -44,12 +44,12 @@ def create_special_buttons(frame_top, frame_mid, frame_bot) -> None:
     
     back_space = ButtonClass(
         master = frame_top, text = "BackSpace",
-        command = KeyCommands.erase,
+        command = key_commands.erase,
         side=RIGHT, width=9, fill= BOTH)
     
     enter_key = ButtonClass(
         master = frame_mid,text =  "Enter",
-        command = KeyCommands.enter,
+        command = key_commands.enter,
         side=RIGHT, width=10,  fill= BOTH)
     
     shift_key_r = ButtonClass(
@@ -62,18 +62,18 @@ def create_button(button, location: str, tk, frame) -> None:
         case "top":
             new_button = ButtonClass(
                 master = frame, text= button.lower(),
-                command = lambda: KeyCommands.button_invoke(str(new_button)),
+                command = lambda: key_commands.button_invoke(str(new_button)),
                 side=LEFT, padx=5, pady=5, width=5, fill = BOTH
             )
         case "mid":
             new_button = ButtonClass(
                 master = frame,  text= button.lower(),
-                command = lambda: KeyCommands.button_invoke(str(new_button)),
+                command = lambda: key_commands.button_invoke(str(new_button)),
                 side=LEFT,padx=5, pady=5, width=5, fill = BOTH)
         case "bot":
             new_button = ButtonClass(
                 master = frame, text = button.lower(),
-                command = lambda: KeyCommands.button_invoke(str(new_button)),
+                command = lambda: key_commands.button_invoke(str(new_button)),
                 side=LEFT,padx=5, pady=5, width=5, fill = BOTH)
         case default:
             print("Failed")
@@ -93,7 +93,7 @@ def create_bottom_buttons(frame) -> None:
     
     space_bar = ButtonClass(
         master = frame,text =  "Space",
-        command = KeyCommands.enter,
+        command = key_commands.enter,
         width=46, side=LEFT,fill=BOTH)
 
     alt_key_r = ButtonClass(
